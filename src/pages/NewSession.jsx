@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Search, UserPlus, Info, Battery, Wifi, Activity, CheckCircle, ArrowRight, RefreshCw, AlertTriangle, ChevronRight } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
-import { getPatients, checkDeviceConnection, createSession } from '../utils/database';
+import { getPatients, checkDeviceConnection, createSession, addPatient } from '../utils/database';
 import { useAuth } from '../context/AuthContext';
 
 const NewSession = () => {
@@ -15,16 +15,43 @@ const NewSession = () => {
     const [sessionNotes, setSessionNotes] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [newPatientName, setNewPatientName] = useState('');
+
+    const fetchPatients = React.useCallback(async () => {
+        if (currentUser) {
+            const data = await getPatients(currentUser.uid);
+            setPatients(data);
+        }
+    }, [currentUser]);
 
     useEffect(() => {
-        const fetchPatients = async () => {
-            if (currentUser) {
-                const data = await getPatients(currentUser.uid);
-                setPatients(data);
-            }
-        };
         fetchPatients();
-    }, [currentUser]);
+    }, [fetchPatients]);
+
+    const handleAddPatient = async (e) => {
+        e.preventDefault();
+        if (!newPatientName.trim() || !currentUser) return;
+
+        try {
+            const newId = await addPatient(currentUser.uid, {
+                name: newPatientName,
+                joinedAt: Date.now()
+            });
+
+            // Refresh list
+            await fetchPatients();
+
+            // Auto-select the new patient (we need to find the one with the key returned)
+            // Since `getPatients` returns an array with `id` property:
+            setSelectedPatientId(newId);
+
+            setNewPatientName('');
+            setIsModalOpen(false);
+        } catch (err) {
+            setError("Failed to add patient: " + err.message);
+        }
+    };
 
     const handleCheckConnection = async () => {
         setDeviceStatus('checking');
@@ -96,7 +123,7 @@ const NewSession = () => {
                                     </div>
                                 </div>
                                 <button
-                                    onClick={() => navigate('/dashboard/patients')}
+                                    onClick={() => setIsModalOpen(true)}
                                     className="flex items-center justify-center space-x-2 px-6 py-3.5 bg-zinc-800 border border-white/5 text-indigo-400 font-bold rounded-xl hover:bg-zinc-700 hover:text-indigo-300 transition-colors shadow-lg whitespace-nowrap"
                                 >
                                     <UserPlus className="h-4 w-4" />
@@ -239,7 +266,78 @@ const NewSession = () => {
 
                 </div>
             </div>
+
+            {/* Add Patient Modal */}
+            {isModalOpen && (
+                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 animate-in fade-in duration-200">
+                    <div className="glass-panel p-8 rounded-2xl w-full max-w-md relative border-indigo-500/20 shadow-2xl shadow-black/50">
+                        <h2 className="text-xl font-bold text-white mb-2">Add New Patient</h2>
+                        <p className="text-zinc-400 text-sm mb-6">Create a new patient record instantly.</p>
+
+                        <form onSubmit={handleAddPatient}>
+                            <div className="mb-6">
+                                <label className="block text-xs font-bold text-zinc-500 uppercase tracking-wider mb-2">Patient Name</label>
+                                <input
+                                    type="text"
+                                    className="w-full px-4 py-3 bg-zinc-900/50 border border-white/5 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 text-white placeholder-zinc-600 font-medium transition-all"
+                                    placeholder="e.g. Jane Doe"
+                                    value={newPatientName}
+                                    onChange={e => setNewPatientName(e.target.value)}
+                                    autoFocus
+                                />
+                            </div>
+                            <div className="flex justify-end space-x-3">
+                                <button
+                                    type="button"
+                                    onClick={() => setIsModalOpen(false)}
+                                    className="px-5 py-2.5 text-zinc-400 hover:text-white font-medium transition-colors"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="submit"
+                                    className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/20 transition-all active:scale-95"
+                                >
+                                    Create Record
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+        
         </div>
+                            <label className="block text-xs font-bold text-zinc-500 uppercase tracking-wider mb-2">Patient Name</label>
+                            <input
+                                type="text"
+                                className="w-full px-4 py-3 bg-zinc-900/50 border border-white/5 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 text-white placeholder-zinc-600 font-medium transition-all"
+                                placeholder="e.g. Jane Doe"
+                                value={newPatientName}
+                                onChange={e => setNewPatientName(e.target.value)}
+                                autoFocus
+                            />
+                        </div >
+    <div className="flex justify-end space-x-3">
+        <button
+            type="button"
+            onClick={() => setIsModalOpen(false)}
+            className="px-5 py-2.5 text-zinc-400 hover:text-white font-medium transition-colors"
+        >
+            Cancel
+        </button>
+        <button
+            type="submit"
+            className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/20 transition-all active:scale-95"
+        >
+            Create Record
+        </button>
+    </div>
+                    </form >
+                </div >
+            </div >
+        )
+    }
+        </div >
     );
 };
 
