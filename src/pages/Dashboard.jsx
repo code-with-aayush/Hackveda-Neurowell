@@ -130,22 +130,22 @@ const Dashboard = () => {
             {/* TOP BAR */}
             <header className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-6">
                 <div className="flex items-center gap-4">
-                    <div className="p-3 bg-zinc-900 border border-white/5 rounded-xl shadow-lg">
-                        <Activity className="h-6 w-6 text-indigo-500" />
+                    <div className="p-3 bg-white border border-slate-200 rounded-xl shadow-sm">
+                        <Activity className="h-6 w-6 text-primary-600" />
                     </div>
                     <div>
-                        <h1 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+                        <h1 className="text-2xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
                             Patient Monitoring
-                            {activeSession && <span className="px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-bold border border-indigo-500/20 shadow-[0_0_10px_rgba(99,102,241,0.2)]">LIVE SESSION</span>}
+                            {activeSession && <span className="px-2 py-0.5 rounded-full bg-primary-50 text-primary-700 text-xs font-bold border border-primary-200 shadow-sm animate-pulse">LIVE SESSION</span>}
                         </h1>
-                        <p className="text-zinc-400 text-sm mt-1">Real-time biofeedback stream & AI analysis</p>
+                        <p className="text-slate-500 text-sm mt-1">Real-time biofeedback stream & AI analysis</p>
                     </div>
                 </div>
 
                 <div className="flex items-center gap-4">
                     {/* Status Badge */}
-                    <div className={clsx("glass-card px-4 py-2 rounded-full flex items-center gap-2 border transition-all duration-500",
-                        isDeviceConnected ? "bg-emerald-500/5 border-emerald-500/20 text-emerald-400" : "bg-rose-500/5 border-rose-500/20 text-rose-400")}>
+                    <div className={clsx("px-4 py-2 rounded-full flex items-center gap-2 border transition-all duration-500 shadow-sm",
+                        isDeviceConnected ? "bg-emerald-50 border-emerald-200 text-emerald-700" : "bg-rose-50 border-rose-200 text-rose-700")}>
                         <div className="relative flex h-2.5 w-2.5">
                             <span className={clsx("animate-ping absolute inline-flex h-full w-full rounded-full opacity-75", isDeviceConnected ? "bg-emerald-400" : "bg-rose-400")}></span>
                             <span className={clsx("relative inline-flex rounded-full h-2.5 w-2.5", isDeviceConnected ? "bg-emerald-500" : "bg-rose-500")}></span>
@@ -153,18 +153,18 @@ const Dashboard = () => {
                         <span className="text-xs font-bold uppercase tracking-wider">{isDeviceConnected ? "Stream Active" : "Stream Offline"}</span>
                     </div>
 
-                    <div className="h-8 w-px bg-white/10 mx-2"></div>
+                    <div className="h-8 w-px bg-slate-200 mx-2"></div>
 
                     <div className="flex flex-col items-end">
-                        <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider mb-0.5">Session Timer</span>
-                        <div className="font-mono text-xl font-bold text-white leading-none tabular-nums tracking-wide">
+                        <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">Session Timer</span>
+                        <div className="font-mono text-xl font-bold text-slate-800 leading-none tabular-nums tracking-wide">
                             {formatTime(elapsedTime)}
                         </div>
                     </div>
 
                     <button
                         onClick={handleEndSession}
-                        className="ml-2 px-5 py-2.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 border border-rose-500/20 rounded-xl text-xs font-bold transition-all uppercase tracking-wide hover:shadow-[0_0_15px_rgba(244,63,94,0.15)] active:scale-95">
+                        className="ml-2 px-5 py-2.5 bg-white hover:bg-rose-50 text-rose-600 border border-slate-200 hover:border-rose-200 rounded-xl text-xs font-bold transition-all uppercase tracking-wide shadow-sm hover:shadow-md active:scale-95">
                         End Session
                     </button>
                 </div>
@@ -217,23 +217,20 @@ const Dashboard = () => {
                     </div>
 
                     {/* Main Chart Section */}
-                    <div className="glass-panel rounded-2xl p-6 h-[500px] flex flex-col relative overflow-hidden">
-                        <div className="absolute top-0 right-0 p-6 opacity-50 pointer-events-none">
-                            <Activity className="w-96 h-96 text-indigo-500/5 -translate-y-1/2 translate-x-1/2" />
-                        </div>
+                    <div className="bg-white border border-slate-200 rounded-2xl p-6 h-[500px] flex flex-col relative overflow-hidden shadow-sm">
 
                         <div className="flex justify-between items-center mb-6 z-10">
                             <div className="flex items-center gap-3">
-                                <div className="p-2 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
-                                    <TrendingUp className="h-5 w-5 text-indigo-400" />
+                                <div className="p-2 rounded-lg bg-indigo-50 border border-indigo-100">
+                                    <TrendingUp className="h-5 w-5 text-indigo-600" />
                                 </div>
-                                <h3 className="text-lg font-bold text-white">Physiological Trends</h3>
+                                <h3 className="text-lg font-bold text-slate-900">Physiological Trends</h3>
                             </div>
                             <div className="flex items-center gap-2">
-                                <span className="flex items-center gap-1.5 text-xs font-medium text-zinc-400 px-3 py-1.5 rounded-lg bg-zinc-900 border border-white/5">
+                                <span className="flex items-center gap-1.5 text-xs font-medium text-slate-500 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200">
                                     <div className="w-2 h-2 rounded-full bg-rose-500"></div> Heart Rate
                                 </span>
-                                <span className="flex items-center gap-1.5 text-xs font-medium text-zinc-400 px-3 py-1.5 rounded-lg bg-zinc-900 border border-white/5">
+                                <span className="flex items-center gap-1.5 text-xs font-medium text-slate-500 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200">
                                     <div className="w-2 h-2 rounded-full bg-amber-500"></div> HRV
                                 </span>
                             </div>
@@ -244,21 +241,21 @@ const Dashboard = () => {
                                 <AreaChart data={hrData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                                     <defs>
                                         <linearGradient id="colorHrMain" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="5%" stopColor="#f43f5e" stopOpacity={0.3} />
+                                            <stop offset="5%" stopColor="#f43f5e" stopOpacity={0.1} />
                                             <stop offset="95%" stopColor="#f43f5e" stopOpacity={0} />
                                         </linearGradient>
                                         <linearGradient id="colorHrvMain" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.3} />
+                                            <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.1} />
                                             <stop offset="95%" stopColor="#f59e0b" stopOpacity={0} />
                                         </linearGradient>
                                     </defs>
-                                    <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
-                                    <XAxis dataKey="time" stroke="#71717a" tick={{ fontSize: 11 }} tickLine={false} axisLine={false} dy={10} />
-                                    <YAxis stroke="#71717a" tick={{ fontSize: 11 }} tickLine={false} axisLine={false} />
+                                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
+                                    <XAxis dataKey="time" stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} axisLine={false} dy={10} />
+                                    <YAxis stroke="#94a3b8" tick={{ fontSize: 11 }} tickLine={false} axisLine={false} />
                                     <Tooltip
-                                        contentStyle={{ backgroundColor: '#18181b', border: '1px solid #27272a', borderRadius: '12px', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)' }}
-                                        itemStyle={{ color: '#e4e4e7', fontSize: '12px', fontWeight: '500' }}
-                                        labelStyle={{ color: '#a1a1aa', fontSize: '11px', marginBottom: '8px' }}
+                                        contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                                        itemStyle={{ color: '#1e293b', fontSize: '12px', fontWeight: '500' }}
+                                        labelStyle={{ color: '#64748b', fontSize: '11px', marginBottom: '8px' }}
                                     />
                                     <Area type="monotone" dataKey="hr" stroke="#f43f5e" strokeWidth={3} fillOpacity={1} fill="url(#colorHrMain)" name="Heart Rate" />
                                     <Area type="monotone" dataKey="hrv" stroke="#f59e0b" strokeWidth={3} fillOpacity={1} fill="url(#colorHrvMain)" name="HRV" />
@@ -272,41 +269,37 @@ const Dashboard = () => {
                 <div className="space-y-6 flex flex-col">
 
                     {/* Stress Level Card */}
-                    <div className="glass-card rounded-2xl p-6 relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 p-3 opacity-30 pointer-events-none transition-opacity group-hover:opacity-50">
-                            <Brain className="w-24 h-24 text-indigo-500/20 -translate-y-1/2 translate-x-1/2" />
-                        </div>
-
+                    <div className="bg-white border border-slate-200 rounded-2xl p-6 relative overflow-hidden group shadow-sm">
                         <div className="relative z-10">
-                            <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-2">Composite Stress Score</h3>
+                            <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Composite Stress Score</h3>
                             <div className="flex items-end gap-3 mb-4">
-                                <span className="text-5xl font-bold text-white tracking-tighter">{currentStats.stress}</span>
-                                <span className="text-lg text-zinc-500 font-medium mb-1.5">/ 10</span>
+                                <span className="text-5xl font-bold text-slate-900 tracking-tighter">{currentStats.stress}</span>
+                                <span className="text-lg text-slate-400 font-medium mb-1.5">/ 10</span>
                             </div>
 
-                            <div className="h-2 w-full bg-zinc-800 rounded-full overflow-hidden mb-3 border border-white/5">
+                            <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden mb-3 border border-slate-200">
                                 <div
                                     className="h-full bg-gradient-to-r from-emerald-500 via-amber-500 to-rose-500 transition-all duration-1000 ease-out"
                                     style={{ width: `${(currentStats.stress / 10) * 100}%` }}
                                 ></div>
                             </div>
-                            <p className="text-xs text-zinc-400 font-medium">
+                            <p className="text-xs text-slate-500 font-medium">
                                 {currentStats.stress > 7 ? "High stress detected. Consider breathing exercises." : "Patient state is optimal."}
                             </p>
                         </div>
                     </div>
 
                     {/* AI Sidebar */}
-                    <div className="glass-panel flex-1 rounded-2xl flex flex-col p-0 overflow-hidden border-indigo-500/20 bg-gradient-to-b from-zinc-900/80 to-zinc-950/80">
-                        <div className="p-6 border-b border-indigo-500/10 flex justify-between items-center bg-indigo-500/5">
-                            <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                                <Sparkles className="h-5 w-5 text-indigo-400" />
+                    <div className="bg-white border border-slate-200 flex-1 rounded-2xl flex flex-col p-0 overflow-hidden shadow-sm">
+                        <div className="p-6 border-b border-primary-100 flex justify-between items-center bg-primary-50">
+                            <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+                                <Sparkles className="h-5 w-5 text-primary-600" />
                                 AI Insights
                             </h3>
-                            {isAnalyzing && <div className="h-2 w-2 bg-indigo-500 rounded-full animate-ping"></div>}
+                            {isAnalyzing && <div className="h-2 w-2 bg-primary-500 rounded-full animate-ping"></div>}
                         </div>
 
-                        <div className="p-6 flex-1 flex flex-col overflow-y-auto custom-scrollbar">
+                        <div className="p-6 flex-1 flex flex-col overflow-y-auto custom-scrollbar bg-slate-50/50">
                             {/* Content */}
                             {aiInsight && !aiInsight.error ? (
                                 <div className="space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
@@ -332,17 +325,17 @@ const Dashboard = () => {
                                 />
                             ) : (
                                 <div className="flex-1 flex flex-col items-center justify-center text-center opacity-50 py-10">
-                                    <Sparkles className="h-10 w-10 text-indigo-400 mb-3" />
-                                    <p className="text-sm text-zinc-400 font-medium">Waiting for analysis...</p>
+                                    <Sparkles className="h-10 w-10 text-primary-300 mb-3" />
+                                    <p className="text-sm text-slate-400 font-medium">Waiting for analysis...</p>
                                 </div>
                             )}
                         </div>
 
-                        <div className="p-4 bg-zinc-950/50 border-t border-white/5">
+                        <div className="p-4 bg-white border-t border-slate-200">
                             <button
                                 onClick={handleManualAnalysis}
                                 disabled={isAnalyzing}
-                                className="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/30 active:scale-95 disabled:opacity-50 disabled:pointer-events-none">
+                                className="w-full flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-primary-600/20 hover:shadow-primary-600/30 active:scale-95 disabled:opacity-50 disabled:pointer-events-none">
                                 {isAnalyzing ? 'Analyzing...' : <> <Zap className="h-4 w-4" /> Generate Insight </>}
                             </button>
                         </div>
@@ -357,21 +350,21 @@ const Dashboard = () => {
 // Sub-components
 const VitalCard = ({ title, value, unit, icon: Icon, color, data, dataKey }) => {
     const colorMap = {
-        rose: { text: 'text-rose-500', bg: 'bg-rose-500/10', border: 'border-rose-500/20', stroke: '#f43f5e' },
-        emerald: { text: 'text-emerald-500', bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', stroke: '#10b981' },
-        amber: { text: 'text-amber-500', bg: 'bg-amber-500/10', border: 'border-amber-500/20', stroke: '#f59e0b' },
-        purple: { text: 'text-purple-500', bg: 'bg-purple-500/10', border: 'border-purple-500/20', stroke: '#a855f7' },
+        rose: { text: 'text-rose-600', bg: 'bg-rose-50', border: 'border-rose-100', stroke: '#e11d48' },
+        emerald: { text: 'text-emerald-600', bg: 'bg-emerald-50', border: 'border-emerald-100', stroke: '#059669' },
+        amber: { text: 'text-amber-600', bg: 'bg-amber-50', border: 'border-amber-100', stroke: '#d97706' },
+        purple: { text: 'text-purple-600', bg: 'bg-purple-50', border: 'border-purple-100', stroke: '#9333ea' },
     };
     const theme = colorMap[color] || colorMap.rose;
 
     return (
-        <div className="glass-card rounded-2xl p-5 relative overflow-hidden group">
+        <div className="bg-white border border-slate-200 rounded-2xl p-5 relative overflow-hidden group shadow-sm hover:shadow-md transition-shadow">
             <div className="flex justify-between items-start mb-2 relative z-10">
                 <div>
-                    <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">{title}</span>
+                    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">{title}</span>
                     <div className="flex items-baseline gap-1 mt-1">
-                        <span className="text-3xl font-bold text-white tracking-tighter">{value}</span>
-                        <span className="text-xs font-medium text-zinc-500">{unit}</span>
+                        <span className="text-3xl font-bold text-slate-900 tracking-tighter">{value}</span>
+                        <span className="text-xs font-medium text-slate-400">{unit}</span>
                     </div>
                 </div>
                 <div className={`p-2 rounded-lg ${theme.bg} ${theme.text} transition-colors group-hover:scale-110 duration-300`}>
@@ -384,7 +377,7 @@ const VitalCard = ({ title, value, unit, icon: Icon, color, data, dataKey }) => 
                     <AreaChart data={data}>
                         <defs>
                             <linearGradient id={`grad-${dataKey}`} x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stopColor={theme.stroke} stopOpacity={0.4} />
+                                <stop offset="0%" stopColor={theme.stroke} stopOpacity={0.2} />
                                 <stop offset="100%" stopColor={theme.stroke} stopOpacity={0} />
                             </linearGradient>
                         </defs>
@@ -398,10 +391,10 @@ const VitalCard = ({ title, value, unit, icon: Icon, color, data, dataKey }) => 
 
 const InsightCard = ({ type, title, desc, time }) => {
     const styles = {
-        warning: { border: 'border-orange-500/20', bg: 'bg-orange-500/5', text: 'text-orange-400', icon: AlertTriangle },
-        info: { border: 'border-indigo-500/20', bg: 'bg-indigo-500/5', text: 'text-indigo-400', icon: Info },
-        error: { border: 'border-rose-500/20', bg: 'bg-rose-500/5', text: 'text-rose-400', icon: AlertCircle },
-        success: { border: 'border-emerald-500/20', bg: 'bg-emerald-500/5', text: 'text-emerald-400', icon: Sparkles },
+        warning: { border: 'border-orange-200', bg: 'bg-orange-50', text: 'text-orange-700', icon: AlertTriangle },
+        info: { border: 'border-blue-200', bg: 'bg-blue-50', text: 'text-blue-700', icon: Info },
+        error: { border: 'border-rose-200', bg: 'bg-rose-50', text: 'text-rose-700', icon: AlertCircle },
+        success: { border: 'border-emerald-200', bg: 'bg-emerald-50', text: 'text-emerald-700', icon: Sparkles },
     };
     const s = styles[type] || styles.info;
     const Icon = s.icon;
@@ -412,8 +405,8 @@ const InsightCard = ({ type, title, desc, time }) => {
                 <Icon className={`h-4 w-4 ${s.text} mt-1`} />
                 <div>
                     <h4 className={`text-sm font-bold ${s.text} mb-1`}>{title}</h4>
-                    <p className="text-xs text-zinc-300 leading-relaxed">{desc}</p>
-                    <span className="text-[10px] text-zinc-500 font-mono mt-2 block opacity-70">{time}</span>
+                    <p className="text-xs text-slate-600 leading-relaxed">{desc}</p>
+                    <span className="text-[10px] text-slate-400 font-mono mt-2 block opacity-70">{time}</span>
                 </div>
             </div>
         </div>

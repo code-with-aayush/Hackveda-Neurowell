@@ -8,21 +8,26 @@ export default {
     extend: {
       colors: {
         primary: {
-          50: '#eff6ff',
+          50: '#ecf4ff', // Lightest Blue
           100: '#dbeafe',
           200: '#bfdbfe',
           300: '#93c5fd',
           400: '#60a5fa',
-          500: '#3b82f6', // Brand Blue
-          600: '#2563eb',
+          500: '#3b82f6',
+          600: '#0054A6', // Max Blue (Primary Brand)
           700: '#1d4ed8',
           800: '#1e40af',
           900: '#1e3a8a',
         },
+        accent: {
+          DEFAULT: '#F37021', // Max Orange
+          hover: '#e0651b',
+        },
         sidebar: {
-          bg: '#0f172a', // Dark slate for sidebar
-          text: '#f1f5f9',
-          active: '#1e293b',
+          bg: '#ffffff', // White sidebar for clinical look
+          text: '#334155', // Slate-700
+          active: '#eff6ff', // Light blue background
+          border: '#e2e8f0', // Slate-200
         }
       },
       fontFamily: {
