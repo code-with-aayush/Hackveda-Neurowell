@@ -38,9 +38,9 @@ const VitalChart = ({ data, title, color = "#3b82f6", dataKey = "value", showStr
                             />
                         )}
                         <Tooltip
-                            contentStyle={{ backgroundColor: '#1E293B', border: 'none', borderRadius: '8px', color: '#F8FAFC' }}
-                            itemStyle={{ color: '#F8FAFC' }}
-                            labelStyle={{ color: '#94A3B8' }}
+                            contentStyle={{ backgroundColor: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: '8px', color: '#1E293B', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                            itemStyle={{ color: '#0F172A', fontWeight: '500' }}
+                            labelStyle={{ color: '#64748B', fontSize: '12px' }}
                         />
                         <Legend />
 

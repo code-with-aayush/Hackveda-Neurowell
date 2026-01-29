@@ -46,35 +46,35 @@ const Patients = () => {
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-white tracking-tight">Patients</h1>
-                    <p className="text-zinc-400 mt-1">Manage your patient roster, monitor vitals, and initiate therapy sessions.</p>
+                    <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Patients</h1>
+                    <p className="text-slate-500 mt-1">Manage your patient roster, monitor vitals, and initiate therapy sessions.</p>
                 </div>
                 <div className="flex items-center space-x-3">
-                    <div className="hidden md:block text-right mr-2 bg-zinc-900/50 px-4 py-2 rounded-xl border border-white/5">
-                        <div className="text-sm font-bold text-white">{currentUser?.email || 'Dr. Smith'}</div>
-                        <div className="text-xs text-zinc-500 uppercase tracking-wider font-bold">Clinical Psychologist</div>
+                    <div className="hidden md:block text-right mr-2 bg-white px-4 py-2 rounded-xl border border-slate-200">
+                        <div className="text-sm font-bold text-slate-800">{currentUser?.email || 'Dr. Smith'}</div>
+                        <div className="text-xs text-slate-500 uppercase tracking-wider font-bold">Clinical Psychologist</div>
                     </div>
                 </div>
             </div>
 
             {/* Controls */}
-            <div className="glass-panel p-4 rounded-2xl mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="bg-white border border-slate-200 p-4 rounded-2xl mb-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
                 <div className="relative w-full sm:w-96">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-zinc-500" />
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
                     <input
                         type="text"
                         placeholder="Search by name, ID, or email"
-                        className="w-full pl-10 pr-4 py-2.5 bg-black/20 border border-white/5 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500/50 placeholder-zinc-600 text-zinc-200 transition-all text-sm font-medium"
+                        className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-600/20 focus:border-primary-600/50 placeholder-slate-400 text-slate-700 transition-all text-sm font-medium"
                     />
                 </div>
                 <div className="flex items-center space-x-3 w-full sm:w-auto">
-                    <button className="flex items-center space-x-2 px-4 py-2.5 bg-zinc-800 border border-white/5 rounded-xl text-zinc-400 hover:bg-zinc-700 hover:text-white text-sm font-bold transition-colors">
+                    <button className="flex items-center space-x-2 px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 text-sm font-bold transition-colors shadow-sm">
                         <Filter className="h-4 w-4" />
                         <span>Filter</span>
                     </button>
                     <button
                         onClick={() => setIsModalOpen(true)}
-                        className="premium-button flex items-center justify-center space-x-2 w-full sm:w-auto"
+                        className="bg-primary-600 hover:bg-primary-700 text-white font-bold py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 w-full sm:w-auto shadow-lg shadow-primary-600/20 transition-all active:scale-95"
                     >
                         <Plus className="h-4 w-4" />
                         <span>Add Patient</span>
@@ -84,17 +84,17 @@ const Patients = () => {
 
             {/* Simple Add Patient Modal */}
             {isModalOpen && (
-                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 animate-in fade-in duration-200">
-                    <div className="glass-panel p-8 rounded-2xl w-full max-w-md relative">
-                        <h2 className="text-xl font-bold text-white mb-2">Add New Patient</h2>
-                        <p className="text-zinc-400 text-sm mb-6">Create a new patient record to start tracking vitals.</p>
+                <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 animate-in fade-in duration-200">
+                    <div className="bg-white p-8 rounded-2xl w-full max-w-md relative shadow-2xl">
+                        <h2 className="text-xl font-bold text-slate-900 mb-2">Add New Patient</h2>
+                        <p className="text-slate-500 text-sm mb-6">Create a new patient record to start tracking vitals.</p>
 
                         <form onSubmit={handleAddPatient}>
                             <div className="mb-6">
-                                <label className="block text-xs font-bold text-zinc-500 uppercase tracking-wider mb-2">Patient Name</label>
+                                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Patient Name</label>
                                 <input
                                     type="text"
-                                    className="premium-input w-full"
+                                    className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 px-4 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-primary-600 focus:ring-1 focus:ring-primary-600"
                                     placeholder="e.g. John Doe"
                                     value={newPatientName}
                                     onChange={e => setNewPatientName(e.target.value)}
@@ -102,8 +102,8 @@ const Patients = () => {
                                 />
                             </div>
                             <div className="flex justify-end space-x-3">
-                                <button type="button" onClick={() => setIsModalOpen(false)} className="px-5 py-2.5 text-zinc-400 hover:text-white font-medium transition-colors">Cancel</button>
-                                <button type="submit" className="premium-button">Create Record</button>
+                                <button type="button" onClick={() => setIsModalOpen(false)} className="px-5 py-2.5 text-slate-500 hover:text-slate-700 font-medium transition-colors">Cancel</button>
+                                <button type="submit" className="bg-primary-600 hover:bg-primary-700 text-white font-bold py-2.5 px-6 rounded-xl shadow-lg shadow-primary-600/20 transition-all">Create Record</button>
                             </div>
                         </form>
                     </div>
@@ -111,23 +111,23 @@ const Patients = () => {
             )}
 
             {/* Table */}
-            <div className="glass-panel rounded-2xl overflow-hidden">
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
                 <div className="overflow-x-auto">
                     <table className="w-full text-left">
                         <thead>
-                            <tr className="bg-white/5 border-b border-white/5">
-                                <th className="px-6 py-4 text-xs font-bold text-zinc-500 uppercase tracking-wider">Patient Name</th>
-                                <th className="px-6 py-4 text-xs font-bold text-zinc-500 uppercase tracking-wider">ID</th>
-                                <th className="px-6 py-4 text-xs font-bold text-zinc-500 uppercase tracking-wider">Status</th>
-                                <th className="px-6 py-4 text-xs font-bold text-zinc-500 uppercase tracking-wider text-right">Actions</th>
+                            <tr className="bg-slate-50/50 border-b border-slate-200">
+                                <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Patient Name</th>
+                                <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">ID</th>
+                                <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Status</th>
+                                <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Actions</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5">
+                        <tbody className="divide-y divide-slate-100">
                             {patients.length === 0 ? (
                                 <tr>
-                                    <td colSpan="4" className="px-6 py-16 text-center text-zinc-500">
+                                    <td colSpan="4" className="px-6 py-16 text-center text-slate-500">
                                         <div className="flex flex-col items-center">
-                                            <User className="h-12 w-12 text-zinc-800 mb-3" />
+                                            <User className="h-12 w-12 text-slate-300 mb-3" />
                                             <p className="font-medium">No patients found</p>
                                             <p className="text-sm mt-1 opacity-70">Add a new patient to get started</p>
                                         </div>
@@ -135,36 +135,36 @@ const Patients = () => {
                                 </tr>
                             ) : (
                                 patients.map((patient) => (
-                                    <tr key={patient.id} className="hover:bg-white/5 transition-colors group">
+                                    <tr key={patient.id} className="hover:bg-slate-50 transition-colors group">
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <div className="flex items-center">
-                                                <div className="h-10 w-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center border border-white/10 shadow-lg text-white font-bold text-sm">
+                                                <div className="h-10 w-10 rounded-full bg-primary-100 flex items-center justify-center border border-primary-200 text-primary-700 font-bold text-sm">
                                                     {patient.name.charAt(0).toUpperCase()}
                                                 </div>
                                                 <div className="ml-4">
-                                                    <div className="text-sm font-bold text-white group-hover:text-indigo-400 transition-colors">{patient.name}</div>
-                                                    <div className="text-xs text-zinc-500">Added {new Date(patient.joinedAt).toLocaleDateString()}</div>
+                                                    <div className="text-sm font-bold text-slate-900 group-hover:text-primary-600 transition-colors">{patient.name}</div>
+                                                    <div className="text-xs text-slate-500">Added {new Date(patient.joinedAt).toLocaleDateString()}</div>
                                                 </div>
                                             </div>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            <div className="text-xs font-mono font-medium text-zinc-400 bg-black/40 px-2 py-1 rounded-md inline-block border border-white/5">
+                                            <div className="text-xs font-mono font-medium text-slate-500 bg-slate-100 px-2 py-1 rounded-md inline-block border border-slate-200">
                                                 #{patient.displayId || patient.id.slice(-4).toUpperCase()}
                                             </div>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-100">
                                                 Active
                                             </span>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                <button className="p-2 text-zinc-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+                                                <button className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors">
                                                     <ChevronRight className="h-4 w-4" />
                                                 </button>
                                                 <button
                                                     onClick={() => handleDeletePatient(patient.id)}
-                                                    className="p-2 text-zinc-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors"
+                                                    className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
                                                     title="Delete Patient"
                                                 >
                                                     <Trash2 className="h-4 w-4" />
