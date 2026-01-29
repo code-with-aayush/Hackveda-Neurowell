@@ -39,7 +39,7 @@ const Landing = () => {
                     <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-zinc-400">
                         <a href="#features" className="hover:text-indigo-400 transition-colors">Features</a>
                         <a href="#how-it-works" className="hover:text-indigo-400 transition-colors">How it Works</a>
-                        <a href="#pricing" className="hover:text-indigo-400 transition-colors">Pricing</a>
+                        <a href="#get-started" className="hover:text-indigo-400 transition-colors">Get Started</a>
                     </div>
 
                     <div className="flex items-center gap-4">
@@ -204,7 +204,7 @@ const Landing = () => {
             </section>
 
             {/* Pricing / CTA Section */}
-            <section id="pricing" className="py-32 relative overflow-hidden">
+            <section id="get-started" className="py-32 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-b from-indigo-900/20 to-black z-0"></div>
                 <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay"></div>
 
