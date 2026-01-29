@@ -27,13 +27,6 @@ export const analyzeVitals = async (vitals) => {
         return data;
     } catch (error) {
         console.error("AI Analysis Failed:", error);
-
-        // FAIL-SAFE: Return Mock Data so the demo works even if AWS is down/unpaid
-        console.warn("Falling back to MOCK AI response.");
-        return {
-            insight: "Patient vitals are stable, but stress levels are slightly elevated. (MOCK DATA - AWS Billing Pending)",
-            recommendation: "Suggest deep breathing exercises for 2 minutes. Monitor HRV trend.",
-            risk: "Elevated"
-        };
+        return null;
     }
 };
