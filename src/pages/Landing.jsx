@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Activity, Play, ArrowRight, Heart, Brain, FileText, Zap, Shield, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { Activity, ArrowRight, Heart, Brain, FileText, Zap, Shield, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 
@@ -79,10 +79,7 @@ const Landing = () => {
                                     Start Clinical Trial
                                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                                 </Link>
-                                <button className="w-full sm:w-auto px-8 py-4 bg-zinc-900 border border-white/10 text-zinc-300 font-bold rounded-xl hover:bg-zinc-800 hover:text-white transition-all flex items-center justify-center gap-2">
-                                    <Play className="h-4 w-4 fill-current" />
-                                    Watch Demo
-                                </button>
+
                             </div>
 
                             <div className="flex items-center gap-6 pt-6 animate-in fade-in slide-in-from-bottom-12 duration-700 delay-400">
@@ -235,10 +232,7 @@ const Landing = () => {
                         <Link to="/login" className="w-full sm:w-auto px-10 py-4 bg-white text-black font-bold rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:bg-zinc-200 transition-all hover:scale-105">
                             Get started for free
                         </Link>
-                        <button className="w-full sm:w-auto px-10 py-4 bg-transparent border border-white/10 text-white font-bold rounded-xl hover:bg-white/5 transition-colors flex items-center justify-center group">
-                            Contact Sales
-                            <ChevronRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                        </button>
+
                     </div>
                 </div>
             </section>
